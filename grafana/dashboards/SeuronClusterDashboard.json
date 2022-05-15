@@ -1,0 +1,1443 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1651902479931,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "manager node",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}-bootstrap"
+            ],
+            "groupBys": [],
+            "metricKind": "GAUGE",
+            "metricType": "compute.googleapis.com/instance/cpu/utilization",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "10^2.%",
+            "valueType": "DOUBLE"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Manager - CPU Utilization",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 7
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "GAUGE",
+            "metricType": "compute.googleapis.com/instance/cpu/utilization",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "10^2.%",
+            "valueType": "DOUBLE"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "GCE VM Instance - CPU Utilization",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 7
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/uptime",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "s{uptime}",
+            "valueType": "DOUBLE"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "GCE VM Instance - Uptime",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 15
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/disk/read_ops_count",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "1",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Disk read operations",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 15
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/disk/write_ops_count",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "1",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Disk write operations",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 23
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/disk/read_bytes_count",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "By",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Disk read bytes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 23
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/disk/write_bytes_count",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "By",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "Disk write bytes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 31
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/network/received_packets_count",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "1",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "GCE VM Instance - Received packets",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 31
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/network/sent_packets_count",
+            "perSeriesAligner": "ALIGN_MEAN",
+            "preprocessor": "rate",
+            "projectName": "$project",
+            "query": "",
+            "unit": "{packet}",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "GCE VM Instance - Sent packets count",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 39
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/network/received_bytes_count",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "By",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "GCE VM Instance - Received bytes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "stackdriver",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 39
+      },
+      "id": 10,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "stackdriver",
+            "uid": "${datasource}"
+          },
+          "metricQuery": {
+            "aliasBy": "{{metadata.system_labels.instance_group}}",
+            "alignmentPeriod": "$alignmentPeriod",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "editorMode": "visual",
+            "filters": [
+              "resource.type",
+              "=",
+              "gce_instance",
+              "AND",
+              "metric.label.instance_name",
+              "=",
+              "${deployment}*"
+            ],
+            "groupBys": [
+              "metadata.system_labels.instance_group"
+            ],
+            "metricKind": "DELTA",
+            "metricType": "compute.googleapis.com/instance/network/sent_bytes_count",
+            "perSeriesAligner": "ALIGN_RATE",
+            "preprocessor": "none",
+            "projectName": "$project",
+            "query": "",
+            "unit": "By",
+            "valueType": "INT64"
+          },
+          "queryType": "metrics",
+          "refId": "A"
+        }
+      ],
+      "title": "GCE VM Instance - Sent bytes",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Google Cloud Monitoring",
+          "value": "Google Cloud Monitoring"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "stackdriver",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "DS_POSTGRESQL",
+        "options": [],
+        "query": "postgres",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "uid": "$datasource"
+        },
+        "definition": "Google Cloud Monitoring - Projects",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Project",
+        "multi": false,
+        "name": "project",
+        "options": [],
+        "query": {
+          "labelKey": "",
+          "loading": false,
+          "projectName": "$project",
+          "projects": [],
+          "selectedMetricType": "actions.googleapis.com/smarthome_action/num_active_users",
+          "selectedQueryType": "projects",
+          "selectedSLOService": "",
+          "selectedService": "actions.googleapis.com",
+          "sloServices": []
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "uid": "${datasource}"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Alignment Period",
+        "multi": false,
+        "name": "alignmentPeriod",
+        "options": [],
+        "query": {
+          "labelKey": "",
+          "loading": false,
+          "projectName": "$project",
+          "projects": [
+            {
+              "label": "SeungImport",
+              "value": "neuromancer-seung-import"
+            }
+          ],
+          "refId": "CloudMonitoringVariableQueryEditor-VariableQuery",
+          "selectedMetricType": "actions.googleapis.com/smarthome_action/num_active_users",
+          "selectedQueryType": "alignmentPeriods",
+          "selectedSLOService": "",
+          "selectedService": "actions.googleapis.com",
+          "sloServices": [
+            {
+              "label": "neuromancer-seung-import/annotationengine",
+              "value": "gae:neuromancer-seung-import_annotationengine"
+            },
+            {
+              "label": "neuromancer-seung-import/default",
+              "value": "gae:neuromancer-seung-import_default"
+            },
+            {
+              "label": "neuromancer-seung-import/diff",
+              "value": "gae:neuromancer-seung-import_diff"
+            },
+            {
+              "label": "neuromancer-seung-import/queue",
+              "value": "gae:neuromancer-seung-import_queue"
+            }
+          ]
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "${DS_POSTGRESQL}"
+        },
+        "definition": "select host from connection where conn_id = 'InstanceGroups';",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Deployment",
+        "multi": false,
+        "name": "deployment",
+        "options": [],
+        "query": "select host from connection where conn_id = 'InstanceGroups';",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Seuron Cluster Dashboard",
+  "uid": "SaU8VJlnk",
+  "version": 5,
+  "weekStart": ""
+}
